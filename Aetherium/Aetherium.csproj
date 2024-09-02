@@ -91,9 +91,5 @@
     <PackageReference Include="R2API.Orb" Version="1.0.*" />
     <PackageReference Include="R2API.Networking" Version="1.0.*" />
   </ItemGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy &quot;$(TargetPath)&quot; &quot;NetworkWeaver\Patching\&quot; /Y&#xD;&#xA;cd $(ProjectDir)\NetworkWeaver\&#xD;&#xA;Unity.UNetWeaver.exe &quot;$(NuGetPackageRoot)\unityengine.modules\2019.4.26\lib\netstandard2.0\UnityEngine.CoreModule.dll&quot; &quot;$(NuGetPackageRoot)\riskofrain2.gamelibs\1.2.4-r.0\lib\netstandard2.0\com.unity.multiplayer-hlapi.Runtime.dll&quot; &quot;Patched/&quot; &quot;Patching\$(TargetFileName)&quot; &quot;$(ProjectDir)\lib&quot;&#xD;&#xA;xcopy &quot;Patched\$(TargetFileName)&quot; &quot;C:\Users\Jonathan Church\AppData\Roaming\r2modmanPlus-local\RiskOfRain2\profiles\Aetherium-Testing\BepInEx\plugins\KomradeSpectre-Aetherium&quot; /Y&#xD;&#xA;RD /S /Q &quot;Patched&quot;&#xD;&#xA;RD /S /Q &quot;Patching&quot;" />
-  </Target>
 	
 </Project>
