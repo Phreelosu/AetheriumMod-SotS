@@ -1,7 +1,5 @@
 ﻿using Aetherium.Utils;
 using BepInEx.Configuration;
-using ItemStats;
-using ItemStats.Stat;
 using R2API;
 using RoR2;
 using System.Collections.Generic;
