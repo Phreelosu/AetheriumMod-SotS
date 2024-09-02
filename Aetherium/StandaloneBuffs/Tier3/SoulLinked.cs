@@ -14,7 +14,7 @@ using UnityEngine.Networking;
 using RoR2.Orbs;
 using R2API;
 
-namespace Aetherium.StandaloneBuffs.Tier2
+namespace Aetherium.StandaloneBuffs.Tier3
 {
     public class SoulLinked : BuffBase<SoulLinked>
     {

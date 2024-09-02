@@ -18,6 +18,7 @@ using Aetherium.Utils.Components;
 using RoR2.UI;
 using R2API.Networking.Interfaces;
 using R2API.Networking;
+using Aetherium.MyEntityStates.Faust;
 
 namespace Aetherium.Equipment
 {
@@ -72,30 +73,47 @@ namespace Aetherium.Equipment
 
         private void CreateMithrixLang()
         {
+            AddMithrixHatDialogue("THIS...PUNY...HAT...WON'T...SAVE...YOU...", true);
+            AddMithrixHatDialogue("GET...THIS THING...OFF OF ME!!", true);
+            AddMithrixHatDialogue("WHO TURNED OUT THE LIGHTS?!", true);
+            AddMithrixHatDialogue("I...WILL SHATTER YOU INTO INNUMERABLE PIECES...AND I WILL...BE FASHIONABLE...", true);
+            AddMithrixHatDialogue("I DON'T NEED TO SEE YOU TO OBLITERATE YOU!", true);
+            AddMithrixHatDialogue("COME TO ME MY CHIMERAS! BURN THIS HORRIBLE THING OFF!", true);
+            AddMithrixHatDialogue("IN MY FINAL MOMENTS...YOU DARE TO DEGRADE ME? UNFORGIVABLE...", true);
+            AddMithrixHatDialogue("I AM MITHRIX, KING OF NOTHING...NOW EVEN BLINDED BY THIS CURSE!", true);
+            AddMithrixHatDialogue("I WON'T BE HUMILIATED...NOT LIKE THIS...NOT BY YOU!", true);
+            AddMithrixHatDialogue("YOU MAY WIN WITH TRICKS AND GIMMICKS...BUT I WILL DIE WITH HONOR!", true);
+            AddMithrixHatDialogue("A HAT? REALLY? WHAT NEXT, A CLOWN NOSE?", true);
+            AddMithrixHatDialogue("I'M LOSING...BUT NOT TO SOMEONE WHO USES PARTY TRICKS!", true);
+            AddMithrixHatDialogue("YOU THINK YOU'VE WON? THIS HAT WON'T HIDE YOUR FEAR!", true);
+            AddMithrixHatDialogue("THIS HAT CANNOT SHROUD MY RAGE! I WILL HAVE MY REVENGE!", true);
 
-            MithrixHurtTokens.Add("AETHERIUM_BROTHER_HURT_FAUST_EQUIP1", "THIS...PUNY...HAT...WON'T...SAVE...YOU...");
-            MithrixHurtTokens.Add("AETHERIUM_BROTHER_HURT_FAUST_EQUIP2", "GET...THIS THING...OFF OF ME!!");
-            MithrixHurtTokens.Add("AETHERIUM_BROTHER_HURT_FAUST_EQUIP3", "WHO TURNED OUT THE LIGHTS?!");
-            MithrixHurtTokens.Add("AETHERIUM_BROTHER_HURT_FAUST_EQUIP4", "I...WILL SHATTER YOU INTO INNUMERABLE PIECES...AND I WILL...BE FASHIONABLE...");
-            MithrixHurtTokens.Add("AETHERIUM_BROTHER_HURT_FAUST_EQUIP5", "I DON'T NEED TO SEE YOU TO OBLITERATE YOU!");
-            MithrixHurtTokens.Add("AETHERIUM_BROTHER_HURT_FAUST_EQUIP6", "COME TO ME MY CHIMERAS! BURN THIS HORRIBLE THING OFF!");
+            AddMithrixHatDialogue("I-Is this a hat?!", false);
+            AddMithrixHatDialogue("Which one of you insects threw this at me?!", false);
+            AddMithrixHatDialogue("I already have my crown! I have no need of another!", false);
+            AddMithrixHatDialogue("Did you put glue on this?!", false);
+            AddMithrixHatDialogue("Who made this vile thing? No, it couldn't possibly be...", false);
+            AddMithrixHatDialogue("Of all the weapons to bring into battle...this?", false);
+            AddMithrixHatDialogue("I expected battle, not a fashion show! What is this absurdity?!", false);
+            AddMithrixHatDialogue("A HAT?! Is this your strategy against a god?!", false);
+            AddMithrixHatDialogue("This is your weapon of choice? A mere ornament?", false);
+            AddMithrixHatDialogue("You challenge a deity with a hat? Insolent creatures!", false);
+            AddMithrixHatDialogue("Amusing... You think to unnerve me with this... fashion statement?", false);
+            AddMithrixHatDialogue("You think a hat blinds me? I have other senses, fool!", false);
+            AddMithrixHatDialogue("An eye for an eye is it? Allow me to repay you in kind!", false);
+        }
 
-            foreach (KeyValuePair<string, string> value in MithrixHurtTokens)
+        public static void AddMithrixHatDialogue(string dialogue, bool isHurtLine)
+        {
+            if (isHurtLine)
             {
-                LanguageAPI.Add(value.Key, value.Value);
+                MithrixHurtTokens.Add($"AETHERIUM_BROTHER_HURT_FAUST_EQUIP{MithrixHurtTokens.Count + 1}", dialogue);
+                LanguageAPI.Add($"AETHERIUM_BROTHER_HURT_FAUST_EQUIP{MithrixHurtTokens.Count + 1}", dialogue);
             }
-
-            MithrixTokens.Add("AETHERIUM_BROTHER_FAUST_EQUIP1", "I-Is this a hat?!");
-            MithrixTokens.Add("AETHERIUM_BROTHER_FAUST_EQUIP2", "Which one of you insects threw this at me?!");
-            MithrixTokens.Add("AETHERIUM_BROTHER_FAUST_EQUIP3", "I already have my crown! I have no need of another!");
-            MithrixTokens.Add("AETHERIUM_BROTHER_FAUST_EQUIP4", "Did you put glue on this?!");
-            MithrixTokens.Add("AETHERIUM_BROTHER_FAUST_EQUIP5", "Who made this vile thing? No, it couldn't possibly be...");
-            MithrixTokens.Add("AETHERIUM_BROTHER_FAUST_EQUIP6", "Of all the weapons to bring into battle...this?");
-
-
-            foreach (KeyValuePair<string, string> value in MithrixTokens)
+            else
             {
-                LanguageAPI.Add(value.Key, value.Value);
+                MithrixTokens.Add($"AETHERIUM_BROTHER_FAUST_EQUIP{MithrixTokens.Count + 1}", dialogue);
+                LanguageAPI.Add($"AETHERIUM_BROTHER_FAUST_EQUIP{MithrixTokens.Count + 1}", dialogue);
             }
         }
 
@@ -115,7 +133,7 @@ namespace Aetherium.Equipment
             BrokenSkill.skillNameToken = "AETHERIUM_EQUIPMENT_" + EquipmentLangTokenName + "_BROKEN_SKILL_NAME";
             BrokenSkill.skillDescriptionToken = "AETHERIUM_EQUIPMENT_" + EquipmentLangTokenName + "_BROKEN_DESCRIPTION";
             BrokenSkill.icon = MainAssets.LoadAsset<Sprite>("SealedSkill.png");
-            BrokenSkill.activationState = new EntityStates.SerializableEntityStateType(typeof(MyEntityStates.Faust.BrokenSkillState));
+            BrokenSkill.activationState = new EntityStates.SerializableEntityStateType(typeof(BrokenSkillState));
             BrokenSkill.activationStateMachineName = "Weapon";
             BrokenSkill.baseMaxStock = 1;
             BrokenSkill.baseRechargeInterval = 1f;
@@ -1627,7 +1645,7 @@ namespace Aetherium.Equipment
 
         private void GiveFaustController(On.RoR2.CharacterBody.orig_OnEquipmentGained orig, CharacterBody self, EquipmentDef equipmentDef)
         {
-            if(equipmentDef == EquipmentDef && self)
+            if (equipmentDef == EquipmentDef && self)
             {
                 var faustController = self.gameObject.AddComponent<FaustControllerComponent>();
             }
@@ -1654,7 +1672,7 @@ namespace Aetherium.Equipment
             {
                 var faustInventoryCount = self.inventory.GetItemCount(FaustItem);
                 var deactivatedFaustInventoryCount = self.inventory.GetItemCount(DeactivatedFaustItem);
-                if(faustInventoryCount > 0 || deactivatedFaustInventoryCount > 0)
+                if (faustInventoryCount > 0 || deactivatedFaustInventoryCount > 0)
                 {
                     var victimFaustComponent = self.gameObject.GetComponent<FaustComponent>();
                     if (!victimFaustComponent)
@@ -1839,7 +1857,7 @@ namespace Aetherium.Equipment
             {
                 if (damageReport.victim.gameObject == gameObject && attacker && damageReport.attackerBody && !damageReport.isFriendlyFire)
                 {
-                    if(CurrentMoneyMakingHitsCount < MoneyMakingHitCap)
+                    if (CurrentMoneyMakingHitsCount < MoneyMakingHitCap)
                     {
                         DropExtraGold(damageReport, damageReport.attackerBody);
                         CurrentMoneyMakingHitsCount++;
@@ -1884,9 +1902,9 @@ namespace Aetherium.Equipment
             public void FixedUpdate()
             {
                 stopwatch += Time.fixedDeltaTime;
-                if(stopwatch >= CheckDuration && !BeginDestruction)
+                if (stopwatch >= CheckDuration && !BeginDestruction)
                 {
-                    if(faustController && !faustController.activeBargains.Contains(this))
+                    if (faustController && !faustController.activeBargains.Contains(this))
                     {
                         BeginDestruction = true;
                     }
@@ -1894,7 +1912,7 @@ namespace Aetherium.Equipment
                     stopwatch = 0;
                 }
 
-                if(BeginDestruction)
+                if (BeginDestruction)
                 {
                     if (this.skillLocator)
                     {
@@ -1912,7 +1930,7 @@ namespace Aetherium.Equipment
                     if (inventory)
                     {
                         var inventoryCount = inventory.GetItemCount(Faust.instance.FaustItem);
-                        if(inventoryCount > 0)
+                        if (inventoryCount > 0)
                         {
                             inventory.RemoveItem(Faust.instance.FaustItem, inventoryCount);
                         }
@@ -2039,7 +2057,7 @@ namespace Aetherium.Equipment
                 if (victimGameObject)
                 {
                     var faustComponents = victimGameObject.GetComponents<FaustComponent>();
-                    foreach(var faustComponent in faustComponents)
+                    foreach (var faustComponent in faustComponents)
                     {
                         UnityEngine.Object.Destroy(faustComponent);
                     }
