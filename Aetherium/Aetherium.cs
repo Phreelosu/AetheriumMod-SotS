@@ -30,9 +30,6 @@ namespace Aetherium
 {
     [BepInPlugin(ModGuid, ModName, ModVer)]
     [BepInDependency("com.bepis.r2api")]
-    //[BepInDependency(TILER2.TILER2Plugin.ModGuid, BepInDependency.DependencyFlags.SoftDependency)]
-    [BepInDependency("dev.ontrigger.itemstats", BepInDependency.DependencyFlags.SoftDependency)]
-    [BepInDependency("com.xoxfaby.BetterUI", BepInDependency.DependencyFlags.SoftDependency)]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
     [R2APISubmoduleDependency(nameof(ItemAPI), nameof(LanguageAPI), //nameof(BuffAPI), nameof(ResourcesAPI), nameof(EffectAPI), nameof(ProjectileAPI), nameof(ArtifactAPI), nameof(LoadoutAPI),   
                               nameof(PrefabAPI), nameof(SoundAPI), nameof(OrbAPI),
@@ -40,9 +37,9 @@ namespace Aetherium
                               nameof(CommandHelper), nameof(DamageAPI))]
     public class AetheriumPlugin : BaseUnityPlugin
     {
-        public const string ModGuid = "com.KomradeSpectre.Aetherium";
-        public const string ModName = "Aetherium";
-        public const string ModVer = "0.6.8";
+        public const string ModGuid = "com.Phreel.AetheriumRevived";
+        public const string ModName = "Aetherium_Revived";
+        public const string ModVer = "0.6.9";
 
         internal static BepInEx.Logging.ManualLogSource ModLogger;
 
