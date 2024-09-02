@@ -84,7 +84,7 @@ namespace Aetherium.Equipment
             effectComponent.applyScale = true;
 
             var destroyOnParticleEnd = BellSoundwaveEffect.AddComponent<DestroyOnParticleEnd>();
-            destroyOnParticleEnd.ps = BellSoundwaveEffect.transform.Find("Wave").gameObject.GetComponent<ParticleSystem>();
+            destroyOnParticleEnd.trackedParticleSystem = BellSoundwaveEffect.transform.Find("Wave").gameObject.GetComponent<ParticleSystem>();
 
             var vfxAttributes = BellSoundwaveEffect.AddComponent<RoR2.VFXAttributes>();
             vfxAttributes.vfxIntensity = RoR2.VFXAttributes.VFXIntensity.Low;
@@ -109,7 +109,7 @@ namespace Aetherium.Equipment
             secondaryVfxAttributes.vfxPriority = RoR2.VFXAttributes.VFXPriority.Always;
 
             var secondaryDestroyOnParticleEnd = NoBellSpawnEffect.AddComponent<DestroyOnParticleEnd>();
-            secondaryDestroyOnParticleEnd.ps = NoBellSpawnEffect.GetComponent<ParticleSystem>();
+            secondaryDestroyOnParticleEnd.trackedParticleSystem = NoBellSpawnEffect.GetComponent<ParticleSystem>();
 
             if (NoBellSpawnEffect) PrefabAPI.RegisterNetworkPrefab(NoBellSpawnEffect);
             ContentAddition.AddEffect(NoBellSpawnEffect);
