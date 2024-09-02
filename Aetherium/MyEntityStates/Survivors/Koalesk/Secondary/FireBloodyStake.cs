@@ -24,7 +24,7 @@ namespace Aetherium.MyEntityStates.Survivors.Koalesk
                 FireProjectileInfo Stake = new FireProjectileInfo()
                 {
                     owner = characterBody.gameObject,
-                    projectilePrefab = Aetherium.Items.BlasterSword.SwordProjectile,
+                    projectilePrefab = Aetherium.Items.Tier3.BlasterSword.SwordProjectile,
                     speedOverride = 150.0f,
                     damage = 50 * ProjectilesToGenerate,
                     damageTypeOverride = null,
