@@ -7,13 +7,9 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using Aetherium.Utils;
-using ItemStats;
-using ItemStats.Stat;
-using ItemStats.ValueFormatters;
 
 using static Aetherium.AetheriumPlugin;
 using static Aetherium.Utils.MathHelpers;
-using static Aetherium.Compatability.ModCompatability.BetterUICompat;
 
 using RoR2.Projectile;
 using UnityEngine.Networking;
@@ -156,7 +152,7 @@ namespace Aetherium.Items.Tier1
             shrapnelEffectComponent.applyScale = true;
 
             var particleKiller = NailBombShrapnelEffect.AddComponent<DestroyOnParticleEnd>();
-            particleKiller.ps = NailBombShrapnelEffect.GetComponent<ParticleSystem>();
+            particleKiller.trackedParticleSystem = NailBombShrapnelEffect.GetComponent<ParticleSystem>();
 
             var shrapnelVFXComponent = NailBombShrapnelEffect.AddComponent<VFXAttributes>();
             shrapnelVFXComponent.vfxIntensity = VFXAttributes.VFXIntensity.Low;
@@ -475,8 +471,6 @@ namespace Aetherium.Items.Tier1
 
         public override void Hooks()
         {
-            RoR2Application.onLoad += OnLoadModCompat;
-
             if (UseAlternateImplementation)
             {
                 On.RoR2.CharacterBody.FixedUpdate += FireNailBombFromBody;
@@ -484,15 +478,6 @@ namespace Aetherium.Items.Tier1
             else
             {
                 On.RoR2.GlobalEventManager.OnHitEnemy += FireNailBomb;
-            }
-        }
-
-        private void OnLoadModCompat()
-        {
-            if (IsBetterUIInstalled)
-            {
-                var bombCooldownDebuffInfo = CreateBetterUIBuffInformation($"{ItemLangTokenName}_BOMB_COOLDOWN", NailBombCooldownDebuff.name, "You've run out of materials to create another Nail Bomb, keep looking around!", false);
-                RegisterBuffInfo(NailBombCooldownDebuff, bombCooldownDebuffInfo.Item1, bombCooldownDebuffInfo.Item2);
             }
         }
 
