@@ -123,21 +123,37 @@ namespace Aetherium.Equipment.EliteEquipment
 
             if (EliteMaterial)
             {
-                On.RoR2.CharacterBody.FixedUpdate += OverlayManager;                
+                On.RoR2.CharacterBody.FixedUpdate += OverlayManager;
             }
         }
+
+        /*private void CharacterModel_UpdateOverlays(On.RoR2.CharacterModel.orig_UpdateOverlays orig, CharacterModel self)
+        {
+            orig(self);
+            if (self.body && self.body.inventory)
+            {
+                if (self.activeOverlayCount >= CharacterModel.maxOverlays) return;
+                if (self.body.HasBuff(EliteBuffDef))
+                {
+                    Material[] array = self.currentOverlays;
+                    int num = self.activeOverlayCount;
+                    self.activeOverlayCount = num + 1;
+                    array[num] = EliteMaterial;
+                }
+            }
+        }*/
 
         private void OverlayManager(On.RoR2.CharacterBody.orig_FixedUpdate orig, CharacterBody self)
         {
             if (self.modelLocator && self.modelLocator.modelTransform && self.HasBuff(EliteBuffDef) && !self.GetComponent<EliteOverlayManager>())
             {
-                RoR2.TemporaryOverlay overlay = self.modelLocator.modelTransform.gameObject.AddComponent<RoR2.TemporaryOverlay>();
+                var overlay = TemporaryOverlayManager.AddOverlay(self.modelLocator.modelTransform.gameObject);
                 overlay.duration = float.PositiveInfinity;
                 overlay.alphaCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
                 overlay.animateShaderAlpha = true;
                 overlay.destroyComponentOnEnd = true;
                 overlay.originalMaterial = EliteMaterial;
-                overlay.AddToCharacerModel(self.modelLocator.modelTransform.GetComponent<RoR2.CharacterModel>());
+                overlay.AddToCharacterModel(self.modelLocator.modelTransform.GetComponent<RoR2.CharacterModel>());
                 var EliteOverlayManager = self.gameObject.AddComponent<EliteOverlayManager>();
                 EliteOverlayManager.Overlay = overlay;
                 EliteOverlayManager.Body = self;
@@ -148,7 +164,7 @@ namespace Aetherium.Equipment.EliteEquipment
 
         public class EliteOverlayManager : MonoBehaviour
         {
-            public RoR2.TemporaryOverlay Overlay;
+            public RoR2.TemporaryOverlayInstance Overlay;
             public RoR2.CharacterBody Body;
             public BuffDef EliteBuffDef;
 
@@ -156,8 +172,8 @@ namespace Aetherium.Equipment.EliteEquipment
             {
                 if (!Body.HasBuff(EliteBuffDef))
                 {
-                    UnityEngine.Object.Destroy(Overlay);
                     UnityEngine.Object.Destroy(this);
+                    Overlay.CleanupEffect();
                 }
             }
         }

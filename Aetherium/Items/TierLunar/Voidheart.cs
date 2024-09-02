@@ -351,7 +351,7 @@ namespace Aetherium.Items.TierLunar
             On.RoR2.CharacterBody.Start += CacheHealthForVoidheart;
             On.RoR2.CharacterBody.Awake += PreventVoidheartFromKillingPlayer;
             On.RoR2.CharacterBody.OnInventoryChanged += VoidheartAnnihilatesItselfOnDeployables;
-            IL.RoR2.HealthComponent.TakeDamage += InterceptPlanula;
+            //IL.RoR2.HealthComponent.TakeDamage += InterceptPlanula;
         }
 
         private void CacheHealthForVoidheart(On.RoR2.CharacterBody.orig_Start orig, CharacterBody self)
@@ -479,13 +479,13 @@ namespace Aetherium.Items.TierLunar
             orig(self);
         }
 
-        private void InterceptPlanula(ILContext il)
+        /*private void InterceptPlanula(ILContext il)
         {
             var c = new ILCursor(il);
             ILLabel label = null;
 
             c.GotoNext(MoveType.After,
-                x => x.MatchLdarg(0),
+                x => x.MatchLdarg(1),
                 x => x.MatchLdflda<RoR2.HealthComponent>("itemCounts"),
                 x => x.MatchLdfld<RoR2.HealthComponent.ItemCounts>("parentEgg"), 
                 x => x.MatchLdcI4(0), 
@@ -495,7 +495,7 @@ namespace Aetherium.Items.TierLunar
             c.EmitDelegate<Func<DamageInfo, bool>>(damageInfo =>
                 !DamageAPI.HasModdedDamageType(damageInfo, VoidHeartDamage));
             c.Emit(OpCodes.Brfalse, label);
-        }
+        }*/
 
         public class VoidheartCooldown : MonoBehaviour
         {

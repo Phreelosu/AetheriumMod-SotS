@@ -10,14 +10,16 @@
     <Compile Remove="Artifacts\ArtifactOfIndecision.cs" />
     <Compile Remove="Artifacts\ArtifactOfUnstableForm.cs" />
     <Compile Remove="CoreModules\Stathooks.cs" />
+    <Compile Remove="Effect\FaustOrb.cs" />
     <Compile Remove="Effect\HungeringConsumptionOrb.cs" />
     <Compile Remove="Equipment\ChaosBeacon.cs" />
+    <Compile Remove="Equipment\Faust.cs" />
     <Compile Remove="Equipment\EliteEquipment\AffixBenevolent.cs" />
-    <Compile Remove="Equipment\EliteEquipment\AffixHungering.cs" />
-    <Compile Remove="Equipment\EliteEquipment\AffixHypercharged.cs" />
     <Compile Remove="Equipment\EliteEquipment\AffixMagnetic.cs" />
     <Compile Remove="Equipment\EliteEquipment\AffixRallying.cs" />
     <Compile Remove="Equipment\EliteEquipment\AffixSteadfast.cs" />
+    <Compile Remove="Equipment\EliteEquipment\AffixHungering.cs" />
+    <Compile Remove="Equipment\EliteEquipment\AffixHypercharged.cs" />
     <Compile Remove="Equipment\EliteEquipment\AffixTarred.cs" />
     <Compile Remove="Equipment\NanoweaveCapsule.cs" />
     <Compile Remove="Equipment\PheromoneSac.cs" />
@@ -28,12 +30,24 @@
     <Compile Remove="Items\BloodDiamond.cs" />
     <Compile Remove="Items\ObliterballAndChain.cs" />
     <Compile Remove="Items\RicochetTest.cs" />
+    <Compile Remove="Survivors\SurvivorBase.cs" />
+    <Compile Remove="Survivors\Koalesk.cs" />
+    <Compile Remove="MyEntityStates\Faust\BrokenSkillState.cs" />
+    <Compile Remove="MyEntityStates\Survivors\BasicMelee.cs" />
+    <Compile Remove="MyEntityStates\Survivors\Koalesk\Primary\DarkThornState.cs" />
+    <Compile Remove="MyEntityStates\Survivors\Koalesk\Primary\RoseThornState.cs" />
+    <Compile Remove="MyEntityStates\Survivors\Koalesk\Secondary\ChargeBloodyStake.cs" />
+    <Compile Remove="MyEntityStates\Survivors\Koalesk\Secondary\FireBloodyStake.cs" />
+    <Compile Remove="MyEntityStates\Survivors\Koalesk\KoaleskMainState.cs" />
+    <Compile Remove="MyEntityStates\Survivors\BrokenSkillState.cs" />
+    <Compile Remove="Items\Tier2\EmpathicResonator.cs" />
     <Compile Remove="Items\VoidItems\FrenziedWarbot.cs" />
     <Compile Remove="Items\VoidItems\PhasewindFeather.cs" />
     <Compile Remove="Items\VoidItems\RazorfinWing.cs" />
     <Compile Remove="Items\VoidItems\ScientistsNanites.cs" />
     <Compile Remove="Items\VoidItems\Shichishito.cs" />
     <Compile Remove="Items\VoidItems\UmbralAspis.cs" />
+    <Compile Remove="Items\VoidItems\Tier1\ShatterSpike.cs" />
     <Compile Remove="StandaloneBuffs\DefensiveMatrix.cs" />
     <Compile Remove="StandaloneBuffs\StrengthOfThePack.cs" />
     <Compile Remove="Survivors\TestCharacter.cs" />
@@ -90,6 +104,12 @@
     <PackageReference Include="R2API.Language" Version="1.0.*" />
     <PackageReference Include="R2API.Orb" Version="1.0.*" />
     <PackageReference Include="R2API.Networking" Version="1.0.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AK.Wwise.Unity.API">
+      <HintPath>E:\SteamLibrary\steamapps\common\Risk of Rain 2\Risk of Rain 2_Data\Managed\AK.Wwise.Unity.API.dll</HintPath>
+    </Reference>
   </ItemGroup>
 	
 </Project>
