@@ -61,7 +61,9 @@ namespace Aetherium.Equipment.EliteEquipment
         {
             "GrandParentBody",
             "EngiTurretBody",
-            "MiniMushroomBody"
+            "MiniMushroomBody",
+            "Assassin2Body",
+            "ScorchlingBody"
         };
 
         public HashSet<string> NoOverdriveForTheseBodies = new HashSet<string>
