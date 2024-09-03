@@ -465,13 +465,13 @@ namespace Aetherium.Items.TierLunar
             if (self.modelLocator && self.modelLocator.modelTransform && self.HasBuff(VoidInstabilityDebuff) && !self.GetComponent<VoidheartCooldown>())
             {
                 var Meshes = Voidheart.ItemBodyModelPrefab.GetComponentsInChildren<MeshRenderer>();
-                RoR2.TemporaryOverlay overlay = self.modelLocator.modelTransform.gameObject.AddComponent<RoR2.TemporaryOverlay>();
+                var overlay = TemporaryOverlayManager.AddOverlay(self.modelLocator.modelTransform.gameObject);
                 overlay.duration = VoidHeartCooldownDebuffDuration;
                 overlay.alphaCurve = AnimationCurve.EaseInOut(0f, 1f, 1f, 0f);
                 overlay.animateShaderAlpha = true;
                 overlay.destroyComponentOnEnd = true;
                 overlay.originalMaterial = MainAssets.LoadAsset<Material>("VoidheartPlaceholderTexture.mat");
-                overlay.AddToCharacerModel(self.modelLocator.modelTransform.GetComponent<RoR2.CharacterModel>());
+                overlay.AddToCharacterModel(self.modelLocator.modelTransform.GetComponent<RoR2.CharacterModel>());
                 var VoidheartCooldownTracker = self.gameObject.AddComponent<Voidheart.VoidheartCooldown>();
                 VoidheartCooldownTracker.Overlay = overlay;
                 VoidheartCooldownTracker.Body = self;
@@ -499,15 +499,15 @@ namespace Aetherium.Items.TierLunar
 
         public class VoidheartCooldown : MonoBehaviour
         {
-            public RoR2.TemporaryOverlay Overlay;
+            public RoR2.TemporaryOverlayInstance Overlay;
             public RoR2.CharacterBody Body;
 
             public void FixedUpdate()
             {
                 if (!Body.HasBuff(VoidInstabilityDebuff))
                 {
-                    UnityEngine.Object.Destroy(Overlay);
                     UnityEngine.Object.Destroy(this);
+                    Overlay.CleanupEffect();
                 }
             }
         }
