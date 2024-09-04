@@ -50,6 +50,8 @@
     <Compile Remove="Items\VoidItems\Tier1\ShatterSpike.cs" />
     <Compile Remove="StandaloneBuffs\DefensiveMatrix.cs" />
     <Compile Remove="StandaloneBuffs\StrengthOfThePack.cs" />
+    <Compile Remove="StandaloneBuffs\Tier2\PrecisionProtocol.cs" />
+    <Compile Remove="StandaloneBuffs\Tier3\SparkGap.cs" />
     <Compile Remove="Survivors\TestCharacter.cs" />
     <Compile Remove="Utils\Components\MaterialControllerComponentsGetter.cs" />
   </ItemGroup>
