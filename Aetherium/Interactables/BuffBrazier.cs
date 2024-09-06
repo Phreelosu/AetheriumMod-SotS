@@ -490,8 +490,10 @@ namespace Aetherium.Interactables
         [SyncVar]
         public GameObject Owner;
 
+        [SyncVar]
         public GameObject LastOwner;
 
+        [SyncVar]
         public int LastIndex = -1;
 
         [SyncVar]
@@ -678,21 +680,25 @@ namespace Aetherium.Interactables
         [SyncVar]
         public GameObject Teleporter;
 
+        [SyncVar]
         public GameObject LastTeleporter;
 
         public BuffBrazierFlameOrbController FlameOrbController;
         public TeleporterInteraction TeleporterInteraction;
         public HoldoutZoneController HoldoutZoneController;
 
+        [SyncVar]
         public GameObject Activator;
         private CharacterMaster ActivatorMaster;
 
         public Renderer Renderer;
         public float Stopwatch;
 
+        [SyncVar]
         public List<Color> Colors = new List<Color>();
+        [SyncVar]
         public int CurrentColorIndex = 0;
-
+        [SyncVar]
         public Color CurrentColor;
 
         public void Start()
@@ -808,11 +814,14 @@ namespace Aetherium.Interactables
 
     public class BuffBrazierManager : NetworkBehaviour
     {
-
+        [SyncVar]
         public CharacterBody Owner;
+        [SyncVar]
         public CharacterBody LastActivator;
 
+        [SyncVar]
         public PurchaseInteraction PurchaseInteraction;
+        [SyncVar]
         public EntityStateMachine BuffBrazierStateMachine;
 
         [SyncVar]
@@ -821,8 +830,10 @@ namespace Aetherium.Interactables
         [SyncVar]
         public int BaseCostDetermination;
 
+        [SyncVar]
         public int LastIndex = -1;
 
+        [SyncVar]
         public BrazierBuffCuratedType ChosenBuffBrazierBuff;
 
         public GameObject BrazierFire;
