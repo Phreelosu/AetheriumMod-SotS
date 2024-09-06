@@ -86,7 +86,7 @@ namespace Aetherium.Items.Tier3
         public static GameObject ItemBodyModelPrefab;
         public static GameObject ItemFollowerPrefab;
 
-        /*private static readonly List<string> DronesList = new List<string>
+        private static readonly List<string> DronesList = new List<string>
         {
             "DroneBackup",
             "Drone1",
@@ -96,7 +96,7 @@ namespace Aetherium.Items.Tier3
             "MegaDrone",
             "DroneMissile",
             "Turret1"
-        };*/
+        };
 
         private static readonly List<string> BannedTeleportDrones = new List<string>();
         public override void Init(ConfigFile config)
@@ -427,15 +427,15 @@ namespace Aetherium.Items.Tier3
             }
         }
 
-        /*private bool IsDroneSupported(CharacterMaster botMaster)
+        private bool IsDroneSupported(CharacterMaster botMaster)
         {
             return IsDroneSupported(botMaster.name);
-        }*/
+        }
 
-        /*private bool IsDroneSupported(string botMasterName)
+        private bool IsDroneSupported(string botMasterName)
         {
             return DronesList.Exists((droneSubstring) => { return botMasterName.Contains(droneSubstring); });
-        }*/
+        }
 
         private bool IsDroneTeleportBanned(CharacterMaster botMaster)
         {
@@ -447,7 +447,7 @@ namespace Aetherium.Items.Tier3
             return BannedTeleportDrones.Exists((droneSubstring) => { return botMasterName.Contains(droneSubstring); });
         }
 
-        /*
+        
         /// <summary>
         /// Allows a custom drone to be Inspired by Inspiring Drone.
         /// </summary>
@@ -458,7 +458,7 @@ namespace Aetherium.Items.Tier3
             if (IsDroneSupported(masterName)) return false;
             DronesList.Add(masterName);
             return true;
-        }*/
+        }
 
         /// <summary>
         /// Allows a drone to be banned from teleporting near the player.
