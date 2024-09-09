@@ -40,7 +40,7 @@ namespace Aetherium
     {
         public const string ModGuid = "com.KomradeSpectre.Aetherium";
         public const string ModName = "Aetherium";
-        public const string ModVer = "0.7.3";
+        public const string ModVer = "0.7.4";
 
         internal static BepInEx.Logging.ManualLogSource ModLogger;
 
@@ -91,10 +91,12 @@ namespace Aetherium
 
             R2API.Utils.CommandHelper.AddToConsoleWhenReady();
 
-            #if DEBUGMULTIPLAYER
+            On.RoR2.Networking.NetworkManagerSystemSteam.OnClientConnect += (s, u, t) => { };
+
+#if DEBUGMULTIPLAYER
             Logger.LogWarning("DEBUG mode is enabled! Ignore this message if you are actually debugging.");
             On.RoR2.Networking.GameNetworkManager.OnClientConnect += (self, user, t) => { };
-            #endif
+#endif
 
             ModLogger = this.Logger;
             MainConfig = Config;

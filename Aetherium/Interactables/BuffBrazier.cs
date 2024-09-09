@@ -30,16 +30,22 @@ namespace Aetherium.Interactables
 
         public override GameObject InteractableModel => MainAssets.LoadAsset<GameObject>("BuffBrazier.prefab");
 
+        [SyncVar]
         public static GameObject InteractableBodyModelPrefab;
 
+        [SyncVar]
         public static InteractableSpawnCard InteractableSpawnCard;
 
+        [SyncVar]
         public static GameObject BrazierBuffFlameOrb;
 
+        [SyncVar]
         public static GameObject BrazierBuffOrbitOrb;
 
+        [SyncVar]
         public static GameObject BrazierFieldEffectPrefab;
 
+        [SyncVar]
         public static List<BrazierBuffCuratedType> CuratedBuffList = new List<BrazierBuffCuratedType>();
 
         public override void Init(ConfigFile config)
@@ -207,7 +213,14 @@ namespace Aetherium.Interactables
                 spawnCard = InteractableSpawnCard,
                 //allowAmbushSpawn = true, TODO removed i think?
             };
-            DirectorAPI.Helpers.AddNewInteractable(directorCard, DirectorAPI.InteractableCategory.Shrines);
+
+            DirectorAPI.DirectorCardHolder directorCardHolder = new DirectorAPI.DirectorCardHolder
+            {
+                Card = directorCard,
+                InteractableCategory = DirectorAPI.InteractableCategory.Shrines,
+            };
+
+            DirectorAPI.Helpers.AddNewInteractable(directorCardHolder);
         }
 
         private void Hooks()
@@ -490,10 +503,8 @@ namespace Aetherium.Interactables
         [SyncVar]
         public GameObject Owner;
 
-        [SyncVar]
         public GameObject LastOwner;
 
-        [SyncVar]
         public int LastIndex = -1;
 
         [SyncVar]
@@ -546,7 +557,6 @@ namespace Aetherium.Interactables
 
         public List<Vector3> PointsChosen = new List<Vector3>();
         public List<int> FlameOrbIndicesMissingOrbs = new List<int>();
-
 
         public void Start()
         {
@@ -680,25 +690,20 @@ namespace Aetherium.Interactables
         [SyncVar]
         public GameObject Teleporter;
 
-        [SyncVar]
         public GameObject LastTeleporter;
 
         public BuffBrazierFlameOrbController FlameOrbController;
         public TeleporterInteraction TeleporterInteraction;
         public HoldoutZoneController HoldoutZoneController;
 
-        [SyncVar]
         public GameObject Activator;
         private CharacterMaster ActivatorMaster;
 
         public Renderer Renderer;
         public float Stopwatch;
 
-        [SyncVar]
         public List<Color> Colors = new List<Color>();
-        [SyncVar]
         public int CurrentColorIndex = 0;
-        [SyncVar]
         public Color CurrentColor;
 
         public void Start()
@@ -814,14 +819,10 @@ namespace Aetherium.Interactables
 
     public class BuffBrazierManager : NetworkBehaviour
     {
-        [SyncVar]
         public CharacterBody Owner;
-        [SyncVar]
         public CharacterBody LastActivator;
 
-        [SyncVar]
         public PurchaseInteraction PurchaseInteraction;
-        [SyncVar]
         public EntityStateMachine BuffBrazierStateMachine;
 
         [SyncVar]
@@ -830,10 +831,8 @@ namespace Aetherium.Interactables
         [SyncVar]
         public int BaseCostDetermination;
 
-        [SyncVar]
         public int LastIndex = -1;
 
-        [SyncVar]
         public BrazierBuffCuratedType ChosenBuffBrazierBuff;
 
         public GameObject BrazierFire;
