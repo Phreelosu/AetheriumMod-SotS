@@ -28,6 +28,8 @@ namespace Aetherium.Interactables
 
         public override string InteractableLangToken => "BUFF_BRAZIER";
 
+        public override string InteractableInspectDesc => "Allows survivors to gain a temporary buff shown by the flame color and icon above once purchased, the buff only works during the Teleporter Event inside the Teleporter's radius.";
+
         public override GameObject InteractableModel => MainAssets.LoadAsset<GameObject>("BuffBrazier.prefab");
 
         [SyncVar]
@@ -141,6 +143,16 @@ namespace Aetherium.Interactables
 
             var pingInfoProvider = InteractableBodyModelPrefab.AddComponent<PingInfoProvider>();
             pingInfoProvider.pingIconOverride = MainAssets.LoadAsset<Sprite>("BuffBrazierShrineIcon.png");
+
+            var inspect = ScriptableObject.CreateInstance<InspectDef>();
+            var info = inspect.Info = new RoR2.UI.InspectInfo();
+            info.Visual = MainAssets.LoadAsset<Sprite>("BuffBrazierShrineIcon.png");
+            info.DescriptionToken = $"INTERACTABLE_{InteractableLangToken}_INSPECT";
+            info.TitleToken = $"INTERACTABLE_{InteractableLangToken}_TITLE";
+            inspect.Info = info;
+
+            var giip = InteractableBodyModelPrefab.gameObject.AddComponent<GenericInspectInfoProvider>();
+            giip.InspectInfo = inspect;
 
             var entityStateMachine = InteractableBodyModelPrefab.AddComponent<EntityStateMachine>();
             entityStateMachine.customName = "Body";

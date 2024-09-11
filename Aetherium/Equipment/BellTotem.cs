@@ -120,6 +120,8 @@ namespace Aetherium.Equipment
         {
             LanguageAPI.Add("INTERACTABLE_BELL_TOTEM_NAME", "Bell Totem");
             LanguageAPI.Add("INTERACTABLE_BELL_TOTEM_CONTEXT", "Ring the Bell?");
+            LanguageAPI.Add("INTERACTABLE_BELL_TOTEM_INSPECT", "Once activated it stuns and sends enemies flying back.");
+            LanguageAPI.Add("INTERACTABLE_BELL_TOTEM_TITLE", "Bell Totem");
 
             InteractableBodyModelPrefab = MainAssets.LoadAsset<GameObject>("BellTotem.prefab");
             InteractableBodyModelPrefab.AddComponent<NetworkIdentity>();
@@ -133,6 +135,15 @@ namespace Aetherium.Equipment
             purchaseInteraction.setUnavailableOnTeleporterActivated = false;
             purchaseInteraction.isShrine = true;
             purchaseInteraction.isGoldShrine = false;
+
+            var inspect = ScriptableObject.CreateInstance<InspectDef>();
+            var info = inspect.Info = new RoR2.UI.InspectInfo();
+            info.DescriptionToken = "INTERACTABLE_BELL_TOTEM_INSPECT";
+            info.TitleToken = "INTERACTABLE_BELL_TOTEM_TITLE";
+            inspect.Info = info;
+
+            var giip = InteractableBodyModelPrefab.gameObject.AddComponent<GenericInspectInfoProvider>();
+            giip.InspectInfo = inspect;
 
             var entityStateMachine = InteractableBodyModelPrefab.AddComponent<EntityStateMachine>();
             entityStateMachine.customName = "Body";
