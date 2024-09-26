@@ -77,7 +77,7 @@ namespace Aetherium.Items.Tier3
             "<style=cMono>[END OF FILE]</style> ";
 
         public override ItemTier Tier => IsGreenRarity ? ItemTier.Tier2 : ItemTier.Tier3;
-        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.AIBlacklist, ItemTag.Utility };
+        public override ItemTag[] ItemTags => new ItemTag[] { ItemTag.AIBlacklist, ItemTag.Utility, ItemTag.InteractableRelated };
 
         public override GameObject ItemModel => MainAssets.LoadAsset<GameObject>("InspiringDrone.prefab");
 
@@ -95,7 +95,8 @@ namespace Aetherium.Items.Tier3
             "FlameDrone",
             "MegaDrone",
             "DroneMissile",
-            "Turret1"
+            "Turret1",
+            "DroneCommander"
         };
 
         private static readonly List<string> BannedTeleportDrones = new List<string>();
