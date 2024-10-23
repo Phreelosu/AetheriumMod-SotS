@@ -409,20 +409,17 @@ namespace Aetherium.Items.Tier3
             }
         }
 
-        private void UpdateAllTrackers(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
+        private static void UpdateAllTrackers(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
         {
             orig(self);
-            CharacterMaster ownerMaster = self.master;
-            MinionOwnership[] minionOwnerships = UnityEngine.Object.FindObjectsOfType<MinionOwnership>();
-            foreach (MinionOwnership minionOwnership in minionOwnerships)
+            var minionOwnership = MinionOwnership.MinionGroup.FindGroup(self.masterObjectId);
+            if (minionOwnership != null)
             {
-                if (minionOwnership && minionOwnership.ownerMaster && minionOwnership.ownerMaster == ownerMaster)
+                foreach (var minion in minionOwnership.members)
                 {
-                    CharacterMaster minionMaster = minionOwnership.GetComponent<CharacterMaster>();
-                    if (minionMaster)
+                    if (minion && minion.TryGetComponent<BotStatTracker>(out var tracker))
                     {
-                        BotStatTracker tracker = minionMaster.GetComponent<BotStatTracker>();
-                        if (tracker) tracker.UpdateTrackerBoosts();
+                        tracker.UpdateTrackerBoosts();
                     }
                 }
             }

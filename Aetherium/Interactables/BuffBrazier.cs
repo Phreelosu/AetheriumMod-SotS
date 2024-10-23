@@ -50,6 +50,9 @@ namespace Aetherium.Interactables
         [SyncVar]
         public static List<BrazierBuffCuratedType> CuratedBuffList = new List<BrazierBuffCuratedType>();
 
+        [SyncVar]
+        public static float interval;
+
         public override void Init(ConfigFile config)
         {
             CreateConfig(config);
@@ -771,8 +774,10 @@ namespace Aetherium.Interactables
                 }
             }
 
-            if (HoldoutZoneController && HoldoutZoneController.currentRadius > 0 && ActivatorMaster && FlameOrbController && NetworkServer.active)
+            interval -= Time.fixedDeltaTime;
+            if (interval <= 0f && NetworkServer.active && HoldoutZoneController && HoldoutZoneController.currentRadius > 0 && ActivatorMaster && FlameOrbController)
             {
+                interval = 0.2f;
                 RoR2.TeamMask enemyTeams = RoR2.TeamMask.GetEnemyTeams(ActivatorMaster.teamIndex);
                 RoR2.HurtBox[] hurtBoxes = new RoR2.SphereSearch
                 {
